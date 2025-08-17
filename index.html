@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>CSS Gradient Palette Generator Tool | Manthan Kushwaha</title>
+    <meta name="description" content="Generate stunning CSS gradients easily with our CSS Gradient Palette Generator Tool. Create linear, radial, or conic gradients with real-time preview and ready-to-use CSS code.">
+    <meta name="keywords" content="CSS gradient generator, CSS gradient palette, CSS gradient tool, gradient CSS, web design gradients, gradient generator online, CSS gradient code">
+    <meta name="author" content="Manthan Kushwaha">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/manthan-kushwaha/Free_css_palette_generator_tool.git">
+    <meta property="og:title" content="CSS Gradient Palette Generator Tool">
+    <meta property="og:description" content="Generate stunning CSS gradients easily with our CSS Gradient Palette Generator Tool. Create linear, radial, or conic gradients with real-time preview and ready-to-use CSS code.">
+    <meta property="og:image" content="https://yourwebsite.com/images/gradient-tool-preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/css-gradient-generator">
+    <meta property="twitter:title" content="CSS Gradient Palette Generator Tool">
+    <meta property="twitter:description" content="Generate stunning CSS gradients easily with our CSS Gradient Palette Generator Tool. Create linear, radial, or conic gradients with real-time preview and ready-to-use CSS code.">
+    <meta property="twitter:image" content="https://yourwebsite.com/images/gradient-tool-preview.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        #gradient-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls {
+            margin: 15px 0;
+        }
+        
+        input[type="color"],
+        select,
+        button {
+            margin: 5px;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        #css-code {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎨 CSS Gradient Generator</h1>
+
+    <div class="controls">
+        <input type="color" id="color1" value="#ff7f50">
+        <input type="color" id="color2" value="#1e90ff">
+
+        <select id="direction">
+      <option value="to right">→ Left to Right</option>
+      <option value="to bottom">↓ Top to Bottom</option>
+      <option value="to top">↑ Bottom to Top</option>
+      <option value="to left">← Right to Left</option>
+      <option value="135deg">Diagonal</option>
+    </select>
+
+        <button onclick="setRandomColors()">Random</button>
+    </div>
+
+    <div id="gradient-preview"></div>
+
+    <div>
+        <p>Click below to copy CSS:</p>
+        <div id="css-code" onclick="copyCSS()">background: linear-gradient(...)</div>
+    </div>
+
+    <script>
+        const preview = document.getElementById("gradient-preview");
+        const cssCode = document.getElementById("css-code");
+
+        function updateGradient() {
+            const c1 = document.getElementById("color1").value;
+            const c2 = document.getElementById("color2").value;
+            const dir = document.getElementById("direction").value;
+            const gradient = `linear-gradient(${dir}, ${c1}, ${c2})`;
+            preview.style.background = gradient;
+            cssCode.innerText = `background: ${gradient};`;
+        }
+
+        function setRandomColors() {
+            document.getElementById("color1").value = randomColor();
+            document.getElementById("color2").value = randomColor();
+            updateGradient();
+        }
+
+        function randomColor() {
+            return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+        }
+
+        function copyCSS() {
+            navigator.clipboard.writeText(cssCode.innerText).then(() => {
+                alert("CSS copied!");
+            });
+        }
+
+        // Initialize
+        updateGradient();
+        document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", updateGradient));
+    </script>
+
+<header>
+    <h1>CSS Gradient Palette Generator Tool</h1>
+    <p>Create stunning linear, radial, and conic gradients easily with real-time previews and ready-to-use CSS code.</p>
+    <a href="#generator" class="btn btn-primary btn-lg mt-3">Start Generating</a>
+</header>
+
+<!-- Overview Section -->
+<section class="container">
+    <h2>Why Use This CSS Gradient Palette Generator?</h2>
+    <p>The CSS Gradient Palette Generator Tool allows web designers, developers, and creators to produce professional gradients in seconds. It simplifies the design process with an intuitive interface and real-time previews, saving time and enhancing creativity.</p>
+    <ul>
+        <li><strong>Easy to Use:</strong> No coding knowledge required.</li>
+        <li><strong>Customizable:</strong> Linear, radial, or conic gradients with adjustable angles.</li>
+        <li><strong>Real-Time Preview:</strong> Watch gradients update instantly.</li>
+        <li><strong>Cross-Browser Compatible:</strong> Works on all modern browsers.</li>
+        <li><strong>Save and Share:</strong> Export your palettes as CSS, PNG, or SVG.</li>
+    </ul>
+</section>
+
+<!-- How It Works Section -->
+<section class="container bg-white p-4 rounded shadow">
+    <h2>How It Works</h2>
+    <ol>
+        <li><strong>Choose Your Colors:</strong> Use the color picker or enter hex/RGB values.</li>
+        <li><strong>Select Gradient Type:</strong> Linear, radial, or conic gradients.</li>
+        <li><strong>Customize and Preview:</strong> Adjust angles, blending, and transparency in real-time.</li>
+    </ol>
+    <div class="gradient-preview"></div>
+    <a href="#generator" class="btn btn-primary">Generate Your Gradient</a>
+</section>
+
+<!-- Features Section -->
+<section class="container">
+    <h2>Key Features</h2>
+    <ul>
+        <li>Multiple color stops for advanced gradient designs.</li>
+        <li>Preset palettes for inspiration.</li>
+        <li>Transparency control for overlay effects.</li>
+        <li>Mobile-friendly interface.</li>
+        <li>Export options: CSS, PNG, SVG.</li>
+    </ul>
+</section>
+
+<!-- Tips Section -->
+<section class="container bg-white p-4 rounded shadow">
+    <h2>Tips for Stunning Gradients</h2>
+    <ul>
+        <li>Use complementary colors for balance.</li>
+        <li>Experiment with gradient angles for unique effects.</li>
+        <li>Use transparency wisely to add depth.</li>
+        <li>Combine multiple gradients for layered visuals.</li>
+        <li>Test across devices and browsers.</li>
+    </ul>
+</section>
+
+</body>
+
+</html>
